@@ -38,8 +38,8 @@ public class BlackPlayer extends Player{
     }
 
     @Override
-    public Player getOpponent() {
-        return this.board.whitePlayer();
+    public WhitePlayer getOpponent() {
+        return (WhitePlayer) this.board.whitePlayer();
     }
 
     @Override
@@ -65,9 +65,9 @@ public class BlackPlayer extends Player{
                 }
             }
             //black queen side castle
-            if(!this.board.getTile(3).isTileOccupied() &&
+            if(!this.board.getTile(1).isTileOccupied() &&
                     !this.board.getTile(2).isTileOccupied() &&
-                    !this.board.getTile(1).isTileOccupied()){
+                    !this.board.getTile(3).isTileOccupied()){
                 final Tile rookTile = this.board.getTile(0);
                 if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() &&
                         Player.calculateAttacksOnTile(2, opponentsLegals).isEmpty() &&
@@ -75,11 +75,11 @@ public class BlackPlayer extends Player{
                         rookTile.getPiece().getPieceType().isRook()){
                     //TODO add a castle move
                     kingCastles.add(new KingSideCastleMove(this.board,
-                                                                this.playerKing,
-                                                                2,
-                                                                (Rook)rookTile.getPiece(),
-                                                                rookTile.getTileCoordinate(),
-                                                                3));
+                                                           this.playerKing,
+                                                           2,
+                                                           (Rook)rookTile.getPiece(),
+                                                           rookTile.getTileCoordinate(),
+                                                           3));
                 }
             }
         }
